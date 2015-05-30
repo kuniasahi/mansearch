@@ -37,10 +37,16 @@ if __name__ == '__main__':
        print "find all record size = " + str(sizex)
        rn = 30
        pn = sizex / rn
-       while pn > 0:
-          reqx = urllib.urlopen(urlstr + namex +"&" + "pn=" + str(pn))
+       print pn
+       i = 1
+       while i < pn:
+          newurl = urlstr + namex +"&" + "pn=" + str(i)
+          print newurl
+          reqx = urllib.urlopen(newurl)
           web2 = reqx.read()
           get_urls_in_apage(web2)
-          pn = pn - 1
-          print str(pn)
+          i = i + 1
+          if i > 76:
+             break
+          print str(i)
           time.sleep(1)
